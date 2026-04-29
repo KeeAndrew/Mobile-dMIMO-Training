@@ -141,7 +141,7 @@ function HomePage({ setPage }) {
 
       <SectionShell
         eyebrow="Site overview"
-        title="Navigating this website"
+        title="Navigating This Website"
         description="Use this navigation to open the dedicated Learn, Research, and Team pages."
       >
         <div className="grid gap-6 lg:grid-cols-3">
