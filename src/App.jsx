@@ -265,24 +265,24 @@ function LearnPage() {
   const useCaseCards = [
     {
       title: "Low Density Connectivity",
-      subtitle: "Mobile d-MIMO + LEO links",
+      subtitle: "Rural + underserved deployment",
       description:
-        "Extends connectivity to rural and underserved areas by coordinating distributed nodes without needing new macro cell towers.",
-      type: "rural",
+        "Extends coverage into rural environments by coordinating distributed nodes instead of relying on new macro towers.",
+      image: "/images/low-density.png",
     },
     {
       title: "Temporary Networks",
-      subtitle: "Mobile dMIMO + COWs",
+      subtitle: "Events / emergency deployment",
       description:
-        "Supports rapid, deployable connectivity for events, emergencies, and temporary coverage needs without permanent infrastructure.",
-      type: "temporary",
+        "Rapidly deployable connectivity using distributed nodes for temporary high-demand environments.",
+      image: "/images/temporary.png",
     },
     {
       title: "Permanent Urban Networks",
-      subtitle: "Dense coordinated node coverage",
+      subtitle: "Commercial city infrastructure",
       description:
-        "Improves service in dense city environments by coordinating distributed nodes instead of only adding more macro towers.",
-      type: "urban",
+        "Reduces congestion and improves reliability by coordinating dense node networks across urban environments.",
+      image: "/images/urban.png",
     },
   ];
 
@@ -829,9 +829,9 @@ function ResearchPage() {
           {updateBlocks.map((block) => (
             <GlassCard key={block.title} className="overflow-hidden">
               <img
-                src={block.image}
-                alt={block.title}
-                className="h-72 w-full object-cover"
+                src={card.image}
+                alt={card.title}
+                className="h-full w-full object-contain p-4"
               />
               <div className="p-6">
                 <p className="text-sm uppercase tracking-[0.18em] text-slate-400">
