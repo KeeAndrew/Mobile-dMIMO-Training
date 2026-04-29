@@ -141,12 +141,12 @@ function HomePage({ setPage }) {
 
       <SectionShell
         eyebrow="Site overview"
-        title="A focused landing page"
-        description="Use the navigation to open the dedicated Learn, Research, and Team pages."
+        title="Navigating this website"
+        description="Use this navigation to open the dedicated Learn, Research, and Team pages."
       >
         <div className="grid gap-6 lg:grid-cols-3">
           {[
-            { title: "Learn", text: "Read the intro and try the interactive demo.", icon: BookOpen, page: "learn" },
+            { title: "Learn/Train", text: "Read the intro and try the interactive demo.", icon: BookOpen, page: "learn" },
             { title: "Research", text: "Show milestones, visuals, and project updates.", icon: BarChart3, page: "research" },
             { title: "Team", text: "Display affiliation, advisor, and team information.", icon: Users, page: "team" },
           ].map((item) => {
