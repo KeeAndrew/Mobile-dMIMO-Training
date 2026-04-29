@@ -268,21 +268,21 @@ function LearnPage() {
       subtitle: "Rural + underserved deployment",
       description:
         "Extends coverage into rural environments by coordinating distributed nodes instead of relying on new macro towers.",
-      image: "/images/low-density.png",
+      image: "/images/low-density-cropped.png",
     },
     {
       title: "Temporary Networks",
       subtitle: "Events / emergency deployment",
       description:
         "Rapidly deployable connectivity using distributed nodes for temporary high-demand environments.",
-      image: "/images/temporary.png",
+      image: "/images/temporary-cropped.png",
     },
     {
       title: "Permanent Urban Networks",
       subtitle: "Commercial city infrastructure",
       description:
         "Reduces congestion and improves reliability by coordinating dense node networks across urban environments.",
-      image: "/images/urban.png",
+      image: "/images/urban-cropped.png",
     },
   ];
 
@@ -421,40 +421,14 @@ function LearnPage() {
         <div className="grid gap-6 lg:grid-cols-3">
           {useCaseCards.map((card) => (
             <GlassCard key={card.title} className="p-6 md:p-7">
-              <div className="mb-6 flex min-h-[120px] items-center justify-center rounded-[24px] border border-slate-200 bg-[linear-gradient(180deg,#ffffff,#f8fbff)] p-4">
-                {card.type === "rural" && (
-                  <div className="relative h-28 w-full">
-                    <div className="absolute left-[10%] top-[35%] h-8 w-8 rounded-full border-2 border-slate-700" />
-                    <div className="absolute left-[42%] top-[18%] h-8 w-8 rounded-full border-2 border-slate-700" />
-                    <div className="absolute right-[10%] top-[40%] h-8 w-8 rounded-full border-2 border-slate-700" />
-                    <div className="absolute left-[18%] top-[40%] h-px w-[24%] bg-orange-400" />
-                    <div className="absolute left-[48%] top-[28%] h-px w-[24%] rotate-[24deg] bg-orange-400" />
-                    <div className="absolute bottom-1 left-[10%] h-10 w-8 rounded-sm border-2 border-slate-700" />
-                    <div className="absolute bottom-1 left-[40%] h-10 w-8 rounded-sm border-2 border-slate-700" />
-                    <div className="absolute left-[62%] top-[18%] text-3xl text-slate-700">📡</div>
-                  </div>
-                )}
-                {card.type === "temporary" && (
-                  <div className="relative h-28 w-full">
-                    <div className="absolute left-[12%] bottom-[18%] h-10 w-14 rounded-xl border-2 border-slate-700" />
-                    <div className="absolute right-[12%] bottom-[18%] h-10 w-14 rounded-xl border-2 border-slate-700" />
-                    <div className="absolute left-1/2 top-[18%] h-12 w-20 -translate-x-1/2 rounded-[999px] border-2 border-slate-700" />
-                    <div className="absolute left-1/2 top-[6%] -translate-x-1/2 text-2xl">📱</div>
-                    <div className="absolute left-[28%] top-[34%] h-px w-[18%] -rotate-[24deg] bg-orange-400" />
-                    <div className="absolute right-[28%] top-[34%] h-px w-[18%] rotate-[24deg] bg-orange-400" />
-                  </div>
-                )}
-                {card.type === "urban" && (
-                  <div className="relative h-28 w-full">
-                    <div className="absolute left-[12%] bottom-3 h-16 w-10 border-2 border-slate-700" />
-                    <div className="absolute left-[28%] bottom-3 h-20 w-12 border-2 border-slate-700" />
-                    <div className="absolute left-[48%] bottom-3 h-24 w-14 border-2 border-slate-700" />
-                    <div className="absolute left-[70%] bottom-3 h-18 w-10 border-2 border-slate-700" />
-                    <div className="absolute right-[6%] top-[8%] text-3xl text-slate-700">📶</div>
-                    <div className="absolute left-[30%] top-[10%] h-px w-[46%] bg-orange-400" />
-                  </div>
-                )}
+              <div className="mb-6 flex h-56 items-center justify-center rounded-[24px] border border-slate-200 bg-white p-4">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="max-h-full max-w-full object-contain"
+                />
               </div>
+
               <h3 className="text-xl font-semibold text-slate-950">{card.title}</h3>
               <p className="mt-2 text-sm font-medium uppercase tracking-[0.18em] text-slate-400">
                 {card.subtitle}
@@ -476,109 +450,123 @@ function NodeSignalGame() {
       id: 1,
       title: "Low Density Connectivity",
       prompt:
-        "A rural user needs connectivity across a sparse area. Select the distributed nodes that best extend coverage toward the user.",
-      theme: "rural",
-      nodes: [
-        { id: "A", x: "18%", y: "26%", good: true },
-        { id: "B", x: "46%", y: "18%", good: false },
-        { id: "C", x: "74%", y: "26%", good: true },
-        { id: "D", x: "28%", y: "68%", good: false },
-        { id: "E", x: "68%", y: "72%", good: true },
+        "Click the key parts of the diagram that help extend Mobile dMIMO coverage in a low-density or rural setting.",
+      instruction:
+        "Look for the main connectivity path: satellite support, macro infrastructure, and the user device being served.",
+      image: "/images/low-density.png",
+      hotspots: [
+        { id: "LEO satellite", x: "58%", y: "14%", good: true },
+        { id: "Macro tower", x: "86%", y: "33%", good: true },
+        { id: "Main user device", x: "12%", y: "73%", good: true },
+        { id: "Second phone", x: "52%", y: "74%", good: false },
       ],
-      user: { x: "52%", y: "52%" },
       explanation:
-        "In a low-density setting, distributed support can help extend service where fixed large infrastructure is limited.",
+        "The correct elements show how coverage can be extended through distributed links between the user, satellite, and macro infrastructure.",
     },
     {
       id: 2,
       title: "Temporary Networks",
       prompt:
-        "An event site needs temporary connectivity. Choose the nodes that would most naturally support fast deployable service around the user area.",
-      theme: "temporary",
-      nodes: [
-        { id: "A", x: "20%", y: "22%", good: false },
-        { id: "B", x: "48%", y: "18%", good: true },
-        { id: "C", x: "76%", y: "26%", good: false },
-        { id: "D", x: "26%", y: "64%", good: true },
-        { id: "E", x: "70%", y: "66%", good: true },
+        "Click the temporary deployment elements that help create fast connectivity for an event or emergency site.",
+      instruction:
+        "Look for deployable infrastructure like COWs and the event area they are supporting.",
+      image: "/images/temporary.png",
+      hotspots: [
+        { id: "Left COW", x: "13%", y: "67%", good: true },
+        { id: "Right COW", x: "86%", y: "67%", good: true },
+        { id: "Event venue", x: "50%", y: "56%", good: true },
+        { id: "Phone marker", x: "50%", y: "13%", good: false },
       ],
-      user: { x: "49%", y: "48%" },
       explanation:
-        "Temporary networks benefit from smart placement and coordination, especially when coverage must be deployed quickly.",
+        "COWs, or Cells on Wheels, provide temporary wireless coverage for high-demand locations like events, stadiums, emergencies, or disaster response.",
     },
     {
       id: 3,
       title: "Permanent Urban Networks",
       prompt:
-        "A dense urban environment needs coordinated service. Select the nodes that best support the user while fitting a distributed urban deployment.",
-      theme: "urban",
-      nodes: [
-        { id: "A", x: "17%", y: "24%", good: false },
-        { id: "B", x: "46%", y: "22%", good: true },
-        { id: "C", x: "79%", y: "24%", good: true },
-        { id: "D", x: "24%", y: "70%", good: false },
-        { id: "E", x: "69%", y: "69%", good: true },
+        "Click the distributed urban nodes that coordinate coverage across the city environment.",
+      instruction:
+        "Focus on smaller distributed building nodes, not only the macro tower.",
+      image: "/images/urban.png",
+      hotspots: [
+        { id: "Rooftop node", x: "46%", y: "8%", good: true },
+        { id: "Left building node", x: "12%", y: "28%", good: true },
+        { id: "Right building node", x: "88%", y: "70%", good: true },
+        { id: "Macro tower", x: "86%", y: "20%", good: false },
       ],
-      user: { x: "58%", y: "50%" },
       explanation:
-        "In urban settings, Mobile dMIMO can coordinate distributed nodes across buildings and streets to improve service and reduce congestion pressure.",
+        "Permanent urban networks use distributed nodes across buildings and streets to improve capacity, reduce congestion, and avoid relying only on macro towers.",
     },
   ];
 
   const [scenarioIndex, setScenarioIndex] = useState(0);
-  const [selectedNodes, setSelectedNodes] = useState([]);
+  const [selectedHotspots, setSelectedHotspots] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const [showSolution, setShowSolution] = useState(false);
   const [score, setScore] = useState(0);
 
   const scenario = networkScenarios[scenarioIndex];
-  const correctIds = scenario.nodes.filter((node) => node.good).map((node) => node.id);
-  const progress = ((scenarioIndex + (submitted ? 1 : 0)) / networkScenarios.length) * 100;
+
+  const correctIds = scenario.hotspots
+    .filter((spot) => spot.good)
+    .map((spot) => spot.id);
+
+  const progress =
+    ((scenarioIndex + (submitted ? 1 : 0)) / networkScenarios.length) * 100;
 
   const isPerfect =
     submitted &&
-    selectedNodes.length === correctIds.length &&
-    correctIds.every((id) => selectedNodes.includes(id));
+    selectedHotspots.length === correctIds.length &&
+    correctIds.every((id) => selectedHotspots.includes(id));
 
-  const toggleNode = (id) => {
-    if (submitted) return;
-    setSelectedNodes((prev) =>
+  const toggleHotspot = (id) => {
+    if (submitted || showSolution) return;
+
+    setSelectedHotspots((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
   };
 
   const submit = () => {
-    if (submitted || selectedNodes.length === 0) return;
+    if (selectedHotspots.length === 0 || submitted) return;
+
     setSubmitted(true);
-    if (
-      selectedNodes.length === correctIds.length &&
-      correctIds.every((id) => selectedNodes.includes(id))
-    ) {
+    setShowSolution(false);
+
+    if (isPerfect) {
       setScore((s) => s + 1);
     }
+  };
+
+  const revealSolution = () => {
+    setSubmitted(true);
+    setShowSolution(true);
   };
 
   const next = () => {
     if (scenarioIndex < networkScenarios.length - 1) {
       setScenarioIndex((s) => s + 1);
-      setSelectedNodes([]);
+      setSelectedHotspots([]);
       setSubmitted(false);
+      setShowSolution(false);
     }
   };
 
   const reset = () => {
     setScenarioIndex(0);
-    setSelectedNodes([]);
+    setSelectedHotspots([]);
     setSubmitted(false);
+    setShowSolution(false);
     setScore(0);
   };
 
   return (
     <SectionShell
-      eyebrow="Visual interactive training"
-      title="Explore use-case-based node selection"
-      description="Pick the distributed nodes that best support the user in each scenario."
+      eyebrow="Interactive use-case game"
+      title="Identify Mobile dMIMO elements in each use case"
+      description="Click directly on the diagram. Selected areas glow blue. After checking, correct spots turn green and wrong choices turn red."
     >
-      <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <GlassCard className="p-6 md:p-8">
           <div className="flex items-center justify-between gap-4">
             <div>
@@ -589,6 +577,7 @@ function NodeSignalGame() {
                 {scenario.title}
               </h3>
             </div>
+
             <Badge className="rounded-full bg-sky-50 px-4 py-1 text-sky-700">
               Score {score}
             </Badge>
@@ -598,93 +587,128 @@ function NodeSignalGame() {
             <Progress value={progress} className="h-2 rounded-full" />
           </div>
 
-          <div className="mt-7 rounded-[30px] border border-slate-200 bg-[linear-gradient(180deg,#fbfdff,#f4f8ff)] p-4 md:p-5">
-            <div className="mb-4 text-sm text-slate-500">Interactive network field</div>
-
-            <div className="relative h-[430px] overflow-hidden rounded-[26px] border border-slate-200 bg-[linear-gradient(180deg,#ffffff,#f8fbff)]">
-              <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(to_right,rgba(148,163,184,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.12)_1px,transparent_1px)] [background-size:48px_48px]" />
-
-              {scenario.theme === "rural" && (
-                <>
-                  <div className="absolute left-0 right-0 bottom-0 h-[45%] bg-[linear-gradient(180deg,#eef6eb,#dbead5)]" />
-                  <div className="absolute left-[70%] top-[16%] text-5xl">📡</div>
-                  <div className="absolute left-[34%] bottom-[24%] text-3xl">🌲</div>
-                  <div className="absolute left-[58%] bottom-[18%] text-3xl">🌲</div>
-                </>
-              )}
-
-              {scenario.theme === "temporary" && (
-                <>
-                  <div className="absolute left-0 right-0 bottom-0 h-[38%] bg-[linear-gradient(180deg,#f5f5f5,#e7e7e7)]" />
-                  <div className="absolute left-1/2 top-[10%] -translate-x-1/2 text-3xl">📱</div>
-                </>
-              )}
-
-              {scenario.theme === "urban" && (
-                <>
-                  <div className="absolute left-0 right-0 bottom-0 h-[42%] bg-[linear-gradient(180deg,#f6f7f9,#eceff3)]" />
-                  <div className="absolute left-[12%] bottom-[22%] h-28 w-16 border border-slate-300 bg-white/80" />
-                  <div className="absolute left-[30%] bottom-[20%] h-36 w-20 border border-slate-300 bg-white/80" />
-                  <div className="absolute left-[55%] bottom-[20%] h-40 w-24 border border-slate-300 bg-white/80" />
-                  <div className="absolute right-[6%] top-[10%] text-4xl">📶</div>
-                </>
-              )}
-
-              <div
-                className="absolute z-20 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-white bg-slate-950 text-white shadow-xl"
-                style={{ left: scenario.user.x, top: scenario.user.y }}
-              >
-                U
-              </div>
-
-              {scenario.nodes.map((node) => {
-                const selected = selectedNodes.includes(node.id);
-                const isCorrectNode = submitted && node.good;
-                const isWrongNode = submitted && selected && !node.good;
-
-                return (
-                  <button
-                    key={node.id}
-                    onClick={() => toggleNode(node.id)}
-                    className={cn(
-                      "absolute z-20 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-white font-semibold shadow-lg transition",
-                      selected
-                        ? "bg-sky-600 text-white scale-105"
-                        : "bg-white text-slate-900 hover:bg-slate-50",
-                      isCorrectNode && "bg-emerald-500 text-white",
-                      isWrongNode && "bg-rose-400 text-white"
-                    )}
-                    style={{ left: node.x, top: node.y }}
-                  >
-                    {node.id}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
           <div className="mt-6 rounded-[24px] bg-slate-50 p-5">
             <p className="text-sm uppercase tracking-[0.18em] text-slate-400">
-              Prompt
+              Your task
             </p>
             <p className="mt-3 text-lg leading-8 text-slate-700">
               {scenario.prompt}
             </p>
+            <p className="mt-3 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600">
+              <span className="font-semibold text-slate-900">Hint:</span>{" "}
+              {scenario.instruction}
+            </p>
+          </div>
+
+          <div className="mt-7 overflow-hidden rounded-[28px] border border-slate-200 bg-white p-4">
+            <div className="relative mx-auto aspect-[16/10] w-full overflow-hidden rounded-[22px] bg-white">
+              <img
+                src={scenario.image}
+                alt={scenario.title}
+                className="h-full w-full object-contain"
+              />
+
+              {scenario.hotspots.map((spot) => {
+                const selected = selectedHotspots.includes(spot.id);
+                const checkedCorrect = submitted && selected && spot.good;
+                const checkedWrong = submitted && selected && !spot.good;
+                const solutionSpot = showSolution && spot.good;
+
+                return (
+                  <button
+                    key={spot.id}
+                    onClick={() => toggleHotspot(spot.id)}
+                    className={cn(
+                      "absolute z-20 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-white text-lg font-bold shadow-lg transition",
+                      "hover:scale-110",
+                      !selected &&
+                      !checkedCorrect &&
+                      !checkedWrong &&
+                      !solutionSpot &&
+                      "bg-white/90 text-slate-900",
+                      selected &&
+                      !submitted &&
+                      "bg-sky-600 text-white scale-110 ring-8 ring-sky-300/40",
+                      checkedCorrect &&
+                      "bg-emerald-500 text-white scale-110 ring-8 ring-emerald-300/40",
+                      checkedWrong &&
+                      "bg-rose-500 text-white scale-110 ring-8 ring-rose-300/40",
+                      solutionSpot &&
+                      "bg-emerald-500 text-white scale-110 ring-8 ring-emerald-300/40"
+                    )}
+                    style={{ left: spot.x, top: spot.y }}
+                    title={spot.id}
+                  >
+                    {checkedCorrect || solutionSpot
+                      ? "✓"
+                      : checkedWrong
+                        ? "✕"
+                        : selected
+                          ? "✓"
+                          : ""}
+                  </button>
+                );
+              })}
+
+              {(submitted || showSolution) &&
+                scenario.hotspots.map((spot) => {
+                  const selected = selectedHotspots.includes(spot.id);
+                  const shouldShow =
+                    (spot.good && (submitted || showSolution)) ||
+                    (selected && !spot.good);
+
+                  if (!shouldShow) return null;
+
+                  return (
+                    <div
+                      key={`${spot.id}-label`}
+                      className={cn(
+                        "absolute z-30 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-semibold shadow",
+                        spot.good
+                          ? "bg-emerald-50 text-emerald-700"
+                          : "bg-rose-50 text-rose-700"
+                      )}
+                      style={{ left: spot.x, top: `calc(${spot.y} + 30px)` }}
+                    >
+                      {spot.good ? "✓ " : "✕ "}
+                      {spot.id}
+                    </div>
+                  );
+                })}
+            </div>
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3">
             <Button
               onClick={submit}
-              disabled={selectedNodes.length === 0 || submitted}
-              className="rounded-full bg-slate-950 text-white hover:bg-slate-800 disabled:opacity-50"
+              disabled={selectedHotspots.length === 0 || submitted}
+              className="rounded-full bg-slate-950 text-white 
+             hover:bg-slate-800 
+             active:bg-slate-900 
+             transition duration-200 
+             disabled:opacity-50"
             >
-              Check Node Choices
+              Check Answer
+            </Button>
+
+            <Button
+              onClick={revealSolution}
+              disabled={showSolution}
+              className="rounded-full border border-slate-200 bg-white 
+             hover:bg-slate-100 
+             active:bg-slate-200 
+             transition duration-200"
+            >
+              Show Solution
             </Button>
 
             {submitted && scenarioIndex < networkScenarios.length - 1 && (
               <Button
                 onClick={next}
-                className="rounded-full border border-slate-200 bg-white"
+                className="rounded-full border border-slate-200 bg-white 
+             hover:bg-slate-100 
+             active:bg-slate-200 
+             transition duration-200"
               >
                 Next Scenario
               </Button>
@@ -693,14 +717,16 @@ function NodeSignalGame() {
             {submitted && scenarioIndex === networkScenarios.length - 1 && (
               <Button
                 onClick={reset}
-                className="rounded-full border border-slate-200 bg-white"
+                className="rounded-full border border-slate-200 bg-white 
+             hover:bg-slate-100 
+             active:bg-slate-200 
+             transition duration-200"
               >
-                Restart Demo
+                Restart Game
               </Button>
             )}
           </div>
-
-          {submitted && (
+          {(submitted || showSolution) && (
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -708,13 +734,25 @@ function NodeSignalGame() {
                 "mt-6 rounded-[24px] border p-5",
                 isPerfect
                   ? "border-emerald-200 bg-emerald-50"
-                  : "border-amber-200 bg-amber-50"
+                  : "border-rose-200 bg-rose-50"
               )}
             >
-              <p className="font-semibold text-slate-950">
-                {isPerfect ? "Strong selection" : "Good attempt"}
+              <p
+                className={cn(
+                  "text-xl font-semibold",
+                  isPerfect ? "text-emerald-800" : "text-rose-800"
+                )}
+              >
+                {isPerfect ? "✓ Overall Correct" : "✕ Overall Incorrect"}
               </p>
-              <p className="mt-2 leading-7 text-slate-700">
+
+              <p className="mt-3 leading-7 text-slate-700">
+                {isPerfect
+                  ? "You selected all of the correct Mobile dMIMO elements."
+                  : "You missed at least one correct element or selected something that does not belong."}
+              </p>
+
+              <p className="mt-3 leading-7 text-slate-700">
                 {scenario.explanation}
               </p>
             </motion.div>
@@ -724,30 +762,38 @@ function NodeSignalGame() {
         <div className="space-y-6">
           <GlassCard className="p-6">
             <h4 className="text-xl font-semibold text-slate-950">
-              How this visual game works
+              How to play
             </h4>
             <div className="mt-4 space-y-3 text-slate-600">
-              <p>Look at the scenario environment.</p>
-              <p>Find the distributed nodes that best support the user.</p>
-              <p>Use the use-case context to think about why certain nodes make more sense.</p>
+              <p>1. Read the task and hint.</p>
+              <p>2. Click important parts of the diagram.</p>
+              <p>3. Blue means you selected it.</p>
+              <p>4. Press Check Answer.</p>
+              <p>5. Green checks are correct. Red X marks are wrong.</p>
             </div>
           </GlassCard>
 
           <GlassCard className="p-6">
             <h4 className="text-xl font-semibold text-slate-950">
-              What it teaches
+              Color guide
             </h4>
             <div className="mt-4 grid gap-3">
-              {[
-                "Scenarios match real use-case themes",
-                "Visuals reflect rural, temporary, and urban settings",
-                "Users learn by selecting nodes directly",
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-3 rounded-2xl bg-slate-50 p-3">
-                  <div className="h-2 w-2 rounded-full bg-sky-500" />
-                  <span className="text-slate-700">{item}</span>
+              <div className="flex items-center gap-3 rounded-2xl bg-slate-50 p-3">
+                <div className="h-5 w-5 rounded-full bg-sky-600 ring-4 ring-sky-300/40" />
+                <span className="text-slate-700">Blue glow = selected</span>
+              </div>
+              <div className="flex items-center gap-3 rounded-2xl bg-slate-50 p-3">
+                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-xs text-white">
+                  ✓
                 </div>
-              ))}
+                <span className="text-slate-700">Green check = correct</span>
+              </div>
+              <div className="flex items-center gap-3 rounded-2xl bg-slate-50 p-3">
+                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-rose-500 text-xs text-white">
+                  ✕
+                </div>
+                <span className="text-slate-700">Red X = wrong</span>
+              </div>
             </div>
           </GlassCard>
         </div>
@@ -756,48 +802,17 @@ function NodeSignalGame() {
   );
 }
 function ResearchPage() {
-  const milestones = [
-    {
-      title: "text",
-      subtitle: "text",
-      description:
-        "text",
-      tag: "text",
-    },
-    {
-      title: "text",
-      subtitle: "text",
-      description:
-        "text",
-      tag: "text",
-    },
-    {
-      title: "text",
-      subtitle: "text",
-      description:
-        "text",
-      tag: "text",
-    },
-  ];
+  return (
+    <SectionShell
+      eyebrow="Research"
+      title="Research progress and current work"
+      description="A clean research portfolio section for milestones, updates, diagrams, and current project work."
+    >
+      {/* current research content */}
+    </SectionShell>
+  );
 
-  const updateBlocks = [
-    {
-      title: "Prototype visualization",
-      subtitle: "text",
-      image: "",
-      body:
-        "texttexttexttexttexttext",
-      caption: "texttexttexttext",
-    },
-    {
-      title: "Deployment scenario mapping",
-      subtitle: "texttexttexttexttext",
-      image: "",
-      body:
-        "texttexttexttexttext.",
-      caption: "texttexttexttexttext",
-    },
-  ];
+
 
   return (
     <>
