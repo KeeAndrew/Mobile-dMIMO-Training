@@ -415,8 +415,8 @@ function LearnPage() {
 
       <SectionShell
         eyebrow="Use cases"
-        title="Three ways to think about Mobile dMIMO in practice"
-        description="This section brings the same visual themes from your reference graphic into the site so the learning experience feels tied to real deployment scenarios."
+        title="Three Key Use Cases That We Researched For Mobile dMIMO"
+
       >
         <div className="grid gap-6 lg:grid-cols-3">
           {useCaseCards.map((card) => (
